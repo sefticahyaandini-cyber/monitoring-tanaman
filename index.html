@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7ef">
+    <meta name="description" content="Pantau suhu dan kelembapan tanaman dalam satu dashboard.">
+    <title>Kelompok 2 — Monitoring Tanaman</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Kelompok 2, halaman utama">
+          <span class="brand-mark" aria-hidden="true">✿</span>
+          <span>Kelompok 2<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-actions">
+          <div class="connection-state checking" role="status" aria-live="polite"><span class="status-dot"></span><span id="connection-label">Menghubungkan ke Blynk...</span></div>
+          <button class="install-button" id="install-button" type="button" hidden>Pasang aplikasi</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="welcome-row" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">DASHBOARD TANAMAN</p>
+            <h1 id="page-title">Selamat pagi <span aria-hidden="true">☀️</span></h1>
+            <p class="subtitle">Kondisi rumah kaca Anda, sekilas saja.</p>
+          </div>
+          <div class="updated-label">Pembaruan terakhir <strong id="updated-at">—</strong></div>
+        </section>
+
+        <section class="sensor-grid" aria-label="Pembacaan sensor saat ini">
+          <article class="sensor-card temperature-card">
+            <div class="sensor-card-top">
+              <span class="sensor-icon temperature-icon" aria-hidden="true">↗</span>
+              <span class="sensor-tag">SAAT INI</span>
+            </div>
+            <p class="sensor-name">Suhu udara</p>
+            <p class="sensor-reading"><span id="temperature-value">--.-</span><span class="unit">°C</span></p>
+            <div class="sensor-foot"><span class="range-indicator"></span><span id="temperature-status">Memuat data...</span></div>
+          </article>
+
+          <article class="sensor-card humidity-card">
+            <div class="sensor-card-top">
+              <span class="sensor-icon humidity-icon" aria-hidden="true">⌁</span>
+              <span class="sensor-tag">SAAT INI</span>
+            </div>
+            <p class="sensor-name">Kelembapan udara</p>
+            <p class="sensor-reading"><span id="humidity-value">--</span><span class="unit">%</span></p>
+            <div class="sensor-foot"><span class="range-indicator"></span><span id="humidity-status">Memuat data...</span></div>
+          </article>
+
+          <article class="plant-note">
+            <span class="note-icon" aria-hidden="true">🌱</span>
+            <div>
+              <p class="note-kicker">TIPS HARI INI</p>
+              <p class="note-copy">Tanaman tumbuh nyaman saat suhu dan kelembapan terjaga stabil.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="chart-card" aria-labelledby="chart-title">
+          <div class="chart-header">
+            <div>
+              <p class="eyebrow">RIWAYAT SENSOR</p>
+              <h2 id="chart-title">Perubahan kondisi</h2>
+            </div>
+            <div class="chart-controls" role="group" aria-label="Pilih data grafik">
+              <button class="series-button active" type="button" data-series="temperature" aria-pressed="true">Suhu</button>
+              <button class="series-button" type="button" data-series="humidity" aria-pressed="false">Kelembapan</button>
+            </div>
+          </div>
+          <div class="chart-legend"><span class="legend-dot"></span><span id="legend-label">Suhu (°C)</span><strong id="chart-current">—</strong></div>
+          <div class="chart-wrap">
+            <svg id="sensor-chart" viewBox="0 0 760 260" role="img" aria-label="Grafik riwayat suhu">
+              <g class="chart-grid" id="chart-grid"></g>
+              <g class="chart-y-labels" id="chart-y-labels"></g>
+              <path class="chart-area" id="chart-area"></path>
+              <path class="chart-line" id="chart-line"></path>
+              <g id="chart-points"></g>
+              <g class="chart-x-labels" id="chart-x-labels"></g>
+            </svg>
+          </div>
+          <p class="chart-caption">Grafik menampilkan hingga 12 pembacaan sensor terakhir.</p>
+        </section>
+      </main>
+
+      <footer class="footer"><span><span class="footer-leaf">✿</span> Tumbuh baik, setiap hari.</span><span>Dashboard monitoring tanaman</span></footer>
+    </div>
+  </body>
+</html>

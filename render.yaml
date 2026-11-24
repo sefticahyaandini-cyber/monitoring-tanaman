@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: kebun-monitoring-backend
+    runtime: node
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: BLYNK_AUTH_TOKEN
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false
+      - key: BLYNK_API_URL
+        value: https://blynk.cloud/external/api/get
